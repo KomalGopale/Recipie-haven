@@ -8,21 +8,25 @@ $model = new CommonModel();
 if(isset($_POST['submit']))
 { 
     $recipieName = $_POST['recipie_name'];
+    $recipieId = $_POST['recipie_id']; 
     $ingredientName = $_POST['ingredients'];
     $quantity = $_POST['quantity'];
-    $steps =  $_POST['steps'];
+    $steps = isset($_POST['steps']) ? json_encode($_POST['steps'], JSON_UNESCAPED_SLASHES) : '';
     $category =  $_POST['category'];
     $time =  $_POST['time'];
     $servings =  $_POST['servings']; 
     $active = isset($_POST['active']) ? $_POST['active'] : 0 ;
+    $recipie_image = $_POST['recipie_image'];
 
     //for ingredients and quantity to be combined 
     if(count($ingredientName) === count($quantity)){
         $ingredients = array_combine($ingredientName, $quantity);
+        $ingredients = json_encode($ingredients, JSON_UNESCAPED_SLASHES);
     } else {
         $_SESSION['error'] = "Ingredient count and quantity count is not same";
     }
 
+    
     $category_id_data = $model->getRecordWhere('category', 'category_name', $category, ['id'], $limit = 1);
  
     $category_id = $category_id_data['id'];
@@ -55,7 +59,7 @@ if(isset($_POST['submit']))
             $_SESSION['error'] = "Only JPG, JPEG, PNG & webp files are allowed.";
         }
     }else{
-        $_SESSION['error'] = "No file selected or an error occurred during upload.";
+        $recipieImage = $recipie_image;
     }
    
     $recipieData = [
@@ -71,23 +75,25 @@ if(isset($_POST['submit']))
         "category_id" => $category_id,
     ];
 
-    if($isInsert){
-        $categoryInsert = $model->insertRecord('recipie', $recipieData);
-
-        if($categoryInsert){
-            $_SESSION['success'] = "Recipie inserted successfully";
-        } else {
-            $_SESSION['error'] = "Failed to insert recipie";
-        }
+    if(isset($recipieId) && $recipieId !== ''){
+        $recipieStatus = $model->updateRecordById('recipie', $recipieData, $recipieId);
+        $msg = "updated recipie successfully";
     } else {
-        $_SESSION['error'] = "Error to insert image";
+        $recipieStatus = $model->insertRecord('recipie', $recipieData);
+        $msg = "inserted recipie successfully";
+    }
+
+    if($recipieStatus){
+        $_SESSION['success'] = $msg;
+    }else{
+        $_SESSION['error'] = "Something Went Wrong!";
     }
     
 } else {
     $_SESSION['error'] = "Error in submitting the form"; 
 }
 
-header('Location: ../add_recipie.php');
+header('Location: ../recipie.php');
 exit;
 
 ?>

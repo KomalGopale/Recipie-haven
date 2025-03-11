@@ -146,26 +146,27 @@ class CommonModel
     }
 
     public function updateRecordById($table, $data, $id) {
-    
-        // Construct the SET part of the query dynamically
+        $id = (int) $id; 
+
         $set = [];
         foreach ($data as $column => $value) {
+            // Convert arrays to JSON format before inserting
+            if (is_array($value)) {
+                $value = json_encode($value);
+            }
+    
+            $value = $this->db->real_escape_string($value);
+
             $set[] = "`$column` = '$value'";
         }
+    
         $setQuery = implode(", ", $set);
     
-        // Update query
         $query = "UPDATE `$table` SET $setQuery WHERE id = $id";
-
     
-        // Execute query
-        if ($this->db->query($query)) {
-            return true; 
-        } else {
-            return false; 
-        }
-    
+        return $this->db->query($query);
     }
+    
     
     public function getInnerJoinRecords($table1, $table2, $joinCondition, $whereCondition = "") {
         $sql = "SELECT $table1.* FROM $table1 INNER JOIN $table2 ON $joinCondition";

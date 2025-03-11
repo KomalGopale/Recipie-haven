@@ -129,7 +129,8 @@ $category_data = $model->getAllRecordsByFields('category', ['category_name'], ['
                         </div>
                         <div class="form-group col-md-4">
                             <label for="recipie_image">Choose Recipie Image</label>
-                            <input type="file" class="form-control-file mt-2" id="recipie_image" name="recipie_image" required value = "<?php echo isset($recipie_data[0]['id']) ? $recipie_data[0]['id'] : '' ?>">
+                            <input type="file" class="form-control-file mt-2" id="recipie_image" name="recipie_image" value = "<?php echo isset($recipie_data[0]['id']) ? $recipie_data[0]['id'] : '' ?>">
+                            <input type="hidden" name="recipie_image" value="<?php echo isset($recipie_data[0]['recipie_image'])? $recipie_data[0]['recipie_image']:'' ?>">
                         </div>
                         <div class="form-group col-md-2">
                             <?php if(isset($recipie_data[0]['recipie_image'])){ ?>

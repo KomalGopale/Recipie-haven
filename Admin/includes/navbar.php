@@ -111,6 +111,20 @@ $username = isset($_SESSION['email']) ? $_SESSION['email'] : 'User';
 </li>
 
 <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseHome"
+        aria-expanded="true" aria-controls="collapseHome">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Home</span>
+    </a>
+    <div id="collapseHome" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Welcome Banners</a>
+            <a class="collapse-item" href="#">All Categories</a>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecipie"
         aria-expanded="true" aria-controls="collapseRecipie">
         <i class="fas fa-fw fa-folder"></i>
@@ -137,6 +151,7 @@ $username = isset($_SESSION['email']) ? $_SESSION['email'] : 'User';
         </div>
     </div>
 </li>
+
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">

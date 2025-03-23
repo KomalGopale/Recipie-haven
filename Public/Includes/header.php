@@ -107,7 +107,7 @@
                                     <li class="active"><a href="index.php">Home</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="test.php">Home</a></li>
                                             <li><a href="about.html">About Us</a></li>
                                             <li><a href="blog-post.html">Blog Post</a></li>
                                             <li><a href="receipe-post.html">Receipe Post</a></li>
@@ -172,8 +172,8 @@
                                             </div>
                                         </div>
                                     </li> -->
-                                    <li><a href="receipe-post.php">Receipies</a></li>
-                                    <li><a href="receipe-post.php">Categories</a></li>
+                                    <li><a href="recipies.php">Receipies</a></li>
+                                    <li><a href="categories.php">Categories</a></li>
                                     <li><a href="about.php">About Us</a></li>
                                     <li><a href="contact.php">Contact</a></li>
                                     <li><a href="elements.php">Elements</a></li>

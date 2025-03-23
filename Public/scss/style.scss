@@ -1278,7 +1278,7 @@ textarea:focus {
 .single-preparation-step {
     position: relative;
     z-index: 1;
-    margin-bottom: 50px;
+    margin-bottom: 50px !important;
     h4 {
         color: $text-color2;
         @include flex(0 0 60px);
